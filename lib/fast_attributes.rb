@@ -5,6 +5,7 @@ require 'fast_attributes/version'
 require 'fast_attributes/builder'
 require 'fast_attributes/type_cast'
 require 'fast_attributes/default_attributes'
+require 'active_support/core_ext/hash'
 
 module FastAttributes
   TRUE_VALUES  = {true => nil, 1 => nil, '1' => nil, 't' => nil, 'T' => nil, 'true' => nil, 'TRUE' => nil, 'on' => nil, 'ON' => nil}

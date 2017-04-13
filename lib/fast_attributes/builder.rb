@@ -75,7 +75,7 @@ module FastAttributes
       @methods.module_eval <<-EOS, __FILE__, __LINE__ + 1
         def initialize(attributes = {})
           #{attribute_string}.each do |name, value|
-            public_send("\#{name}=", value)
+            public_send("\#{name}=", value) if respond_to?("\#{name}=".to_sym)
           end
         end
       EOS
@@ -93,9 +93,9 @@ module FastAttributes
       end
 
       @methods.module_eval <<-EOS, __FILE__, __LINE__ + 1
-        def attributes                # def attributes
-          {#{attributes.join(', ')}}  #   {'name' => @name, ...}
-        end                           # end
+        def attributes                			                 # def attributes
+          {#{attributes.join(', ')}}.with_indifferent_access #   {'name' => @name, ...}
+        end                           			                 # end
       EOS
     end
 
